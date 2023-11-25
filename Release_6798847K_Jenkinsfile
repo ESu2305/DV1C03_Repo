@@ -8,17 +8,7 @@ pipeline {
             }
         }
         
-        stage('S2_6798837K') {
-            steps {
-                cleanWs()
-                echo "Stage2_6798837K : Release Container WebApp_6798837K Created Completed"
-                script {
-                    dockerImage = wb1_image_6798837k
-                    dockerContainer = WebApp_6798837K  
-                    docker.build("${dockerImage}:${dockerContainer}").run()
-                }
-            }
-        }
+        
         
         stage('S3_6798837K') {
             parallel {

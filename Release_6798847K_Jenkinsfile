@@ -1,0 +1,65 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('S1_6798837K') {
+            steps {
+                echo "Stage1_6798837K : Release Environment Preparation Completed"
+            }
+        }
+        
+        stage('S2_6798837K') {
+            steps {
+                cleanWs()
+                echo "Stage2_6798837K : Release Container WebApp_6798837K Created Completed"
+                script {
+                    dockerImage = wb1_image_6798837k
+                    dockerContainer = WebApp_6798837K  
+                    docker.build("${dockerImage}:${dockerContainer}").run()
+                }
+            }
+        }
+        
+        stage('S3_6798837K') {
+            parallel {
+                stage('S3 API Test') {
+                    steps {
+                        echo "Stage3_6798837K: API Test Completed"
+                    }
+                }
+                stage('S3 Scan Test') {
+                    steps {
+                        echo "Stage3_6798837K: API Test Completed"
+                    }
+                }
+            }
+        }
+        
+        stage('S4_6798837K') {
+            steps {
+                script {
+                    userInput = input(id: 'UserInput', message: '6798837K, proceed to release the work to next phase', parameters: [booleanParam(defaultValue: true, description: 'Click Proceed to continue', name: 'Proceed')])
+                    if (userInput) {
+                        env.DECISION = 'proceed'
+                    } else {
+                        env.DECISION = 'abort'
+                    }
+                }
+            }
+        }
+        
+        stage('S5_6798837K') {
+            steps {
+                script {
+                    if (env.DECISION == 'proceed') {
+                        echo "Stage5_6798837K : Work Release – Proceeds to Next Phase"
+                    } else {
+                        echo "Stage5_6798837K : Work Release - Stops"
+                        currentBuild.result = 'ABORTED'
+                    }
+                }
+            }
+        }
+    }
+    
+}

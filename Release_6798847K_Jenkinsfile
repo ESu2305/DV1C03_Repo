@@ -16,6 +16,7 @@ pipeline {
                     def containerName = 'WebApp_6798847K' 
 
                     sh "docker stop ${containerName}"
+                    sh "docker rm ${containerName}"
 
                     sh "docker run -d --name ${containerName} -p 31200:80 ${imageName}"
                 }

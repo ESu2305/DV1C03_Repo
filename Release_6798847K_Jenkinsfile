@@ -9,16 +9,14 @@ pipeline {
         }
         
         
-        stage('Deploy Web Container') {
+        stage('S2_6798837K') {
             steps {
                 script {
-                    def imageName = 'your-web-image' // Replace with your actual web image name
-                    def containerName = 'web-container' // Replace with your desired container name
+                    def imageName = 'wb1_image_6798837k' 
+                    def containerName = 'WebApp_6798837K' 
 
-                    // Stop and remove the previous container if it exists
                     sh "docker ps -q --filter 'name=${containerName}' | grep -q . && docker stop ${containerName} && docker rm -fv ${containerName} || true"
 
-                    // Run the new Docker container
                     sh "docker run -d --name ${containerName} -p 31200:80 ${imageName}"
                 }
             }

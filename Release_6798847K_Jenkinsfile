@@ -2,18 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('S1_6798837K') {
+        stage('S1_6798847K') {
             steps {
                 echo "Stage1_6798837K : Release Environment Preparation Completed"
             }
         }
         
         
-        stage('S2_6798837K') {
+        stage('S2_6798847K') {
             steps {
                 script {
-                    def imageName = 'wb1_image_6798837k' 
-                    def containerName = 'WebApp_6798837K' 
+                    def imageName = 'wb1_image_6798847k' 
+                    def containerName = 'WebApp_6798847K' 
 
                     sh "docker ps -q --filter 'name=${containerName}' | grep -q . && docker stop ${containerName} && docker rm -fv ${containerName} || true"
 
@@ -22,22 +22,22 @@ pipeline {
             }
       }
         
-        stage('S3_6798837K') {
+        stage('S3_6798847K') {
             parallel {
                 stage('S3 API Test') {
                     steps {
-                        echo "Stage3_6798837K: API Test Completed"
+                        echo "Stage3_6798847K: API Test Completed"
                     }
                 }
                 stage('S3 Scan Test') {
                     steps {
-                        echo "Stage3_6798837K: API Test Completed"
+                        echo "Stage3_6798847K: API Test Completed"
                     }
                 }
             }
         }
         
-        stage('S4_6798837K') {
+        stage('S4_6798847K') {
             steps {
                 script {
                     userInput = input(id: 'UserInput', message: '6798837K, proceed to release the work to next phase', parameters: [booleanParam(defaultValue: true, description: 'Click Proceed or Abort', name: 'Proceed')])
@@ -50,7 +50,7 @@ pipeline {
             }
         }
         
-        stage('S5_6798837K') {
+        stage('S5_6798847K') {
             steps {
                 script {
                     if (env.DECISION == 'proceed') {

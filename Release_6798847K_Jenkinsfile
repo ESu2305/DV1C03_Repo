@@ -8,7 +8,16 @@ pipeline {
             }
         }
         
-        
+        stage('S2_6798847K') {
+            steps {
+                script {
+                    def imageName = wb1_image_6798847k 
+                    def containerName = WebApp_6798847K  
+                    
+                    sh "docker ps -q --filter 'name=${containerName}' | grep -q . && docker stop ${containerName} && docker rm -fv ${containerName} || true"
+                    
+                    sh "docker run -d --name ${containerName} -p 31200:80 ${imageName}"
+                }
         
         stage('S3_6798837K') {
             parallel {

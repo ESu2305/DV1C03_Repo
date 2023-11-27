@@ -32,7 +32,7 @@ pipeline {
                 }
                 stage('S3 Scan Test') {
                     steps {
-                        echo "Stage3_6798847K: API Test Completed"
+                        echo "Stage3_6798847K: Scan Test Completed"
                     }
                 }
             }

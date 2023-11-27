@@ -41,7 +41,7 @@ pipeline {
         stage('S4_6798847K') {
             steps {
                 script {
-                    s4Input = input(id: 'S4Input', message: '6798847K, proceed to release the work to next phase', parameters: [booleanParam(defaultValue: true, description: 'Click Proceed or Abort', name: 'Proceed')])
+                    s4Input = input(id: 'S4Input', message: '6798847K, proceed to release the work to next phase?', parameters: [booleanParam(defaultValue: true, description: 'Click Proceed or Abort', name: 'Proceed')])
                     if (s4Input) {
                         env.DECISION = 'proceed'
                     } else {

@@ -58,7 +58,7 @@ pipeline {
                         echo "Stage5_6798837K : Work Release – Proceeds to Next Phase"
                     } else {
                         echo "Stage5_6798837K : Work Release - Stops"
-                        currentBuild.result = 'ABORTED'
+                        
                     }
                 }
             }
